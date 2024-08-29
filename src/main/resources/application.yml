@@ -1,0 +1,11 @@
+server:
+  port: 80
+mybatis:
+  mapper-locations: classpath:mappers/*xml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://u.huangsikai.top:3306/event_res?useSSL=false&serverTimezone=UTC
+    username: event_res
+    password: hsk040722

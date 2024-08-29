@@ -1,0 +1,24 @@
+<!-- UserMapper.xml -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huangsikai.eventresspring.mapper.UserMapper">
+
+    <!-- 查询用户 by id -->
+    <select id="getUserById" resultType="com.huangsikai.eventresspring.pojo.User">
+        SELECT * FROM t_user WHERE id = #{id}
+    </select>
+
+    <!-- 查询用户 by name -->
+    <select id="getUserByInfo" resultType="com.huangsikai.eventresspring.pojo.User">
+        SELECT * FROM t_user WHERE uid = #{uid} and pwd =#{pwd}
+    </select>
+
+    <!-- 新增用户 -->
+    <insert id="addUser">
+        insert into t_user(name,password,role) values(#{name},#{password},#{role})
+    </insert>
+
+</mapper>
