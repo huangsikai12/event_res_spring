@@ -1,0 +1,43 @@
+<!-- UserMapper.xml -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huangsikai.eventresspring.mapper.EventMapper">
+
+    <!-- 查询活动列表 -->
+    <select id="getEventList" resultType="com.huangsikai.eventresspring.pojo.Event">
+        select * from t_activity
+    </select>
+
+    <!-- 新增活动 -->
+    <insert id="addEvent">
+        insert into t_activity(title,description,totalCount,place,time) values(#{title},#{description},#{totalCount},#{place},#{time})
+    </insert>
+    <!-- 验证签到码 -->
+    <select id="verEventSign" resultType="com.huangsikai.eventresspring.pojo.Event">
+        SELECT * FROM t_activity where id = #{eid} and signPwd = #{signPwd}
+    </select>
+
+    <!-- 删除活动 -->
+    <delete id="deleteEvent">
+        delete from t_activity where id = ${eid}
+    </delete>
+
+    <!-- 改活动状态 -->
+    <update id="updateEvent">
+        update  t_activity set
+        <if test="status != null ">
+            status = #{status}
+        </if>
+        <if test="signPwd != null">
+            status = 1,
+            signPwd = #{signPwd}
+        </if>
+        where id = ${eid}
+
+    </update>
+
+
+</mapper>

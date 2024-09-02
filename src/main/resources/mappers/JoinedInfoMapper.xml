@@ -1,0 +1,36 @@
+<!-- UserMapper.xml -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huangsikai.eventresspring.mapper.JoinedInfoMapper">
+
+    <!-- 查询已报名用户的活动 by id -->
+    <select id="getJoinedInfoByUserId" resultType="com.huangsikai.eventresspring.pojo.JoinedInfo">
+        SELECT uid,event_id as eid,status FROM t_join where uid = #{uid}
+    </select>
+    <!-- 查询已报名用户的活动2做链接到活动表 by id -->
+    <select id="getJoinEventByUserId" resultType="com.huangsikai.eventresspring.pojo.Event">
+        select ta.* ,t.status as userStatus from t_join as t left join event_res.t_activity ta on ta.id = t.event_id where t.uid =#{uid}
+    </select>
+
+    <!-- 新增活动报名 -->
+    <insert id="addJoin">
+        insert into t_join(uid,event_id,status) values(#{uid},#{event_id},0)
+    </insert>
+
+    <!-- 取消报名 -->
+    <delete id="cancelJoin">
+        delete from t_join where uid = ${uid} and event_id = ${event_id}
+    </delete>
+
+
+    <!-- 更新用户状态 -->
+    <update id="updateJoin">
+        update  t_join set
+            status =  ${status}
+        where event_id = ${eid} and uid = ${uid}
+    </update>
+
+</mapper>
