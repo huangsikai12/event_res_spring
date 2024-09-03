@@ -5,6 +5,7 @@ import com.huangsikai.eventresspring.mapper.EventMapper;
 import com.huangsikai.eventresspring.mapper.JoinedInfoMapper;
 import com.huangsikai.eventresspring.pojo.Event;
 import com.huangsikai.eventresspring.pojo.JoinedInfo;
+import com.huangsikai.eventresspring.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class JoinedInfoServiceImpl implements JoinedInfoService {
     JoinedInfoMapper joinedInfoMapper;
     @Autowired
     EventMapper eventMapper;
+
+    @Override
+    public List<UserVo> getJoinedInfoByEventId(Integer eid,Integer status) {
+        return joinedInfoMapper.getJoinedInfoByEventId(eid,status);
+    }
 
     @Override
     public List<JoinedInfo> getJoinedInfoByUserId(Integer uid) {

@@ -3,6 +3,7 @@ package com.huangsikai.eventresspring.service;
 
 import com.huangsikai.eventresspring.pojo.Event;
 import com.huangsikai.eventresspring.pojo.JoinedInfo;
+import com.huangsikai.eventresspring.vo.UserVo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public interface JoinedInfoService {
 
 
+    List<UserVo> getJoinedInfoByEventId(Integer eid,Integer status);
     List<JoinedInfo> getJoinedInfoByUserId(Integer uid);
     List<Event> getJoinEventByUserId(Integer uid);
     void addJoin(Integer uid,Integer event_id);

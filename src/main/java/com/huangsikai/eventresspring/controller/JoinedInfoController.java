@@ -6,7 +6,9 @@ import com.huangsikai.eventresspring.pojo.Event;
 import com.huangsikai.eventresspring.pojo.JoinedInfo;
 import com.huangsikai.eventresspring.service.EventService;
 import com.huangsikai.eventresspring.service.JoinedInfoService;
+import com.huangsikai.eventresspring.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,6 +73,19 @@ public class JoinedInfoController {
         catch (Exception e)
         {
             return new Result<>(404,"取消报名失败",e.getMessage());
+        }
+
+    }
+
+    @GetMapping("/get/event/join")
+    public Result<List<UserVo>> getJoinedInfoByEventId(@RequestParam Integer eid,@RequestParam @Nullable Integer status) {
+        try
+        {
+            return new Result<List<UserVo>>(200,"获取成功",joinedInfoService.getJoinedInfoByEventId(eid,status));
+        }
+        catch (Exception e)
+        {
+            return new Result(404,"获取失败",e.getMessage());
         }
     }
 

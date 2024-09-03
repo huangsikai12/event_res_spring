@@ -33,4 +33,15 @@
         where event_id = ${eid} and uid = ${uid}
     </update>
 
+    <!-- 查询活动报名人详情 by id -->
+    <select id="getJoinedInfoByEventId" resultType="com.huangsikai.eventresspring.vo.UserVo">
+        select tu.name,tu.uid from t_join as t left join event_res.t_user tu on t.uid = tu.uid where event_id = #{eid}
+        <if test="status!=null">
+            and status = #{status}
+        </if>
+        ;
+    </select>
+
+
+
 </mapper>
