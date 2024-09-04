@@ -13,14 +13,13 @@ public class EventServiceImpl implements EventService{
 
 
 
-
     @Autowired
    EventMapper eventMapper;
 
 
     @Override
-    public List<Event> getEventList() {
-        return eventMapper.getEventList();
+    public List<Event> getEventList(Integer status) {
+        return eventMapper.getEventList(status);
     }
 
     @Override
@@ -29,17 +28,17 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public List<Event> verEventSign(Integer eid, String signPwd) {
+    public List<Event> verEventSign(String eid, String signPwd) {
         return eventMapper.verEventSign(eid, signPwd);
     }
 
     @Override
-    public void deleteEvent(Integer eid) {
+    public void deleteEvent(String eid) {
         eventMapper.deleteEvent(eid);
     }
 
     @Override
-    public void updateEvent(Integer eid, Integer status,String signPwd) {
+    public void updateEvent(String eid, Integer status,String signPwd) {
         eventMapper.updateEvent(eid, status,signPwd);
     }
 }

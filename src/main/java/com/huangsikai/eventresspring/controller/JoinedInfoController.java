@@ -26,11 +26,11 @@ public class JoinedInfoController {
 
 
     @GetMapping("/get/user")
-    public Result<List<JoinedInfo>> getJoinedInfoByUserId(@RequestParam Integer uid)
+    public Result<List<JoinedInfo>> getJoinedInfoByUserId(@RequestParam String uid,@RequestParam @Nullable String eid)
     {
         try
         {
-            return new Result<List<JoinedInfo>>(200,"获取成功",joinedInfoService.getJoinedInfoByUserId(uid));
+            return new Result<List<JoinedInfo>>(200,"获取成功",joinedInfoService.getJoinedInfoByUserId(uid,eid));
         }
         catch (Exception e)
         {
@@ -38,7 +38,7 @@ public class JoinedInfoController {
         }
     }
     @GetMapping("/get/user/detail")
-    public Result<List<Event>> getJoinEventByUserId(@RequestParam Integer uid)
+    public Result<List<Event>> getJoinEventByUserId(@RequestParam String uid)
     {
         try
         {
@@ -50,11 +50,11 @@ public class JoinedInfoController {
         }
     }
     @GetMapping("/add")
-    public Result<String> addJoin(@RequestParam Integer uid,@RequestParam Integer eid)
+    public Result<String> addJoin(@RequestParam String uid,@RequestParam String eid)
     {
         try
         {
-            joinedInfoService.addJoin(uid,eid);
+            joinedInfoService.addJoin(uid,eid,0);
             return new Result<>(200,"报名成功",null);
         }
         catch (Exception e)
@@ -63,7 +63,7 @@ public class JoinedInfoController {
         }
     }
     @GetMapping("/cancel")
-    public Result<String> cancelJoin(@RequestParam Integer uid,@RequestParam Integer eid)
+    public Result<String> cancelJoin(@RequestParam String uid,@RequestParam String eid)
     {
         try
         {
@@ -78,7 +78,7 @@ public class JoinedInfoController {
     }
 
     @GetMapping("/get/event/join")
-    public Result<List<UserVo>> getJoinedInfoByEventId(@RequestParam Integer eid,@RequestParam @Nullable Integer status) {
+    public Result<List<UserVo>> getJoinedInfoByEventId(@RequestParam String eid,@RequestParam @Nullable Integer status) {
         try
         {
             return new Result<List<UserVo>>(200,"获取成功",joinedInfoService.getJoinedInfoByEventId(eid,status));

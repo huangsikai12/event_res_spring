@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class Event {
 
-    private Integer id;
+    private String id;
     // 0-待开始 1-已开始 2-已结束 3-已同步
     private Integer status;
     private String title;

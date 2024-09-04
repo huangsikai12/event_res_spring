@@ -12,6 +12,7 @@ import com.huangsikai.eventresspring.service.UserService;
 import com.huangsikai.eventresspring.vo.UserVo;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,21 +30,21 @@ public class EventController {
 
 
     @GetMapping("/all")
-    public Result<List<Event>> getEventList()
+    public Result<List<Event>> getEventList(@RequestParam @Nullable Integer status)
     {
         try
         {
-            return new Result<List<Event>>(200,"获取成功",eventService.getEventList());
+            return new Result<List<Event>>(200,"获取成功",eventService.getEventList(status));
         }
         catch (Exception e)
         {
-            return new Result(404,"获取失败",null);
+            return new Result(404,"获取失败",e.getMessage());
         }
 
     }
 
     @PostMapping("/delete/{eid}")
-    public Result<String> deleteEvent(@RequestBody UserVo userVo, @PathVariable Integer eid)
+    public Result<String> deleteEvent(@RequestBody UserVo userVo, @PathVariable String eid)
     {
         if (userVo.getRoleId() !=1)
         {
@@ -78,7 +79,7 @@ public class EventController {
     }
 
     @PostMapping("/update/{eid}/{status}")
-    public Result<String> updateStatus(@RequestBody UserVo userVo, @PathVariable Integer eid, @PathVariable Integer status)
+    public Result<String> updateStatus(@RequestBody UserVo userVo, @PathVariable String eid, @PathVariable Integer status)
     {
         if (userVo.getRoleId() !=1)
         {
@@ -97,7 +98,7 @@ public class EventController {
     }
 
     @PostMapping("/setSignPwd/{eid}")
-    public Result<String> updateSignPwd(@RequestBody UserVo userVo, @PathVariable Integer eid, @RequestParam String signPwd)
+    public Result<String> updateSignPwd(@RequestBody UserVo userVo, @PathVariable String eid, @RequestParam String signPwd)
     {
         if (userVo.getRoleId() !=1)
         {
@@ -117,14 +118,25 @@ public class EventController {
 
     @PostMapping("/verSignPwd/{eid}")
     @Transactional
-    public Result<String> verSignPwd(@RequestBody UserVo userVo, @PathVariable Integer eid, @RequestParam String signPwd)
+    public Result<String> verSignPwd(@RequestBody UserVo userVo, @PathVariable String eid, @RequestParam String signPwd,@RequestParam @Nullable  Integer status)
     {
+        if (status == null)
+        {
+            status = 1;
+        }
         try
         {
             List<Event> events = eventService.verEventSign(eid, signPwd);
-            if (!events.isEmpty() && events.get(0).getStatus() == 1)
+            if (status!=1)
             {
-                joinedInfoService.updateJoin(new JoinedInfo(0,userVo.getUid(),eid,1));
+                joinedInfoService.addJoin(userVo.getUid(),eid,status);
+            }else
+            {
+                if (!events.isEmpty() && events.get(0).getStatus() == 1)
+                {
+
+                    joinedInfoService.updateJoin(new JoinedInfo(0,userVo.getUid(),eid,status));
+                }
             }
             return new Result<>(200, !events.isEmpty() ?"验证并签到成功":"签到码错误",null);
         }

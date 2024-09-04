@@ -8,7 +8,18 @@
 
     <!-- 查询已报名用户的活动 by id -->
     <select id="getJoinedInfoByUserId" resultType="com.huangsikai.eventresspring.pojo.JoinedInfo">
-        SELECT uid,event_id as eid,status FROM t_join where uid = #{uid}
+        SELECT uid,event_id as eid,status FROM t_join
+                                          where uid = #{uid}
+                                        <if test="eid!=null">
+                                            and event_id = #{eid}
+                                        </if>
+        ;
+    </select>
+
+    <!-- 查询已报名用户的活动 by status -->
+    <select id="getJoinedInfoByStatus" resultType="com.huangsikai.eventresspring.pojo.JoinedInfo">
+        SELECT tj.uid,event_id as eid,ta.title FROM t_join tj left join event_res.t_activity ta on ta.id = tj.event_id
+        where tj.status = 3;
     </select>
     <!-- 查询已报名用户的活动2做链接到活动表 by id -->
     <select id="getJoinEventByUserId" resultType="com.huangsikai.eventresspring.pojo.Event">
@@ -17,7 +28,7 @@
 
     <!-- 新增活动报名 -->
     <insert id="addJoin">
-        insert into t_join(uid,event_id,status) values(#{uid},#{event_id},0)
+        insert into t_join(uid,event_id,status) values(#{uid},#{event_id},#{status})
     </insert>
 
     <!-- 取消报名 -->
@@ -35,7 +46,7 @@
 
     <!-- 查询活动报名人详情 by id -->
     <select id="getJoinedInfoByEventId" resultType="com.huangsikai.eventresspring.vo.UserVo">
-        select tu.name,tu.uid from t_join as t left join event_res.t_user tu on t.uid = tu.uid where event_id = #{eid}
+        select tu.name,t.uid from t_join as t left join event_res.t_user tu on t.uid = tu.uid where event_id = #{eid}
         <if test="status!=null">
             and status = #{status}
         </if>

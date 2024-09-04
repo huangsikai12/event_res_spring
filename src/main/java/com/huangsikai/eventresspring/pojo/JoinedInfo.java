@@ -11,6 +11,6 @@ public class JoinedInfo {
 
     private Integer id;
     private String uid;
-    private Integer eid;
+    private String eid;
     private Integer status;
 }

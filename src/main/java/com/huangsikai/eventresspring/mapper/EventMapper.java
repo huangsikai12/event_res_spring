@@ -10,10 +10,10 @@ import java.util.List;
 @Mapper
 public interface EventMapper {
 
-    List<Event> getEventList();
+    List<Event> getEventList(Integer status);
 //    User getUserByInfo(UserPo user);
-    void deleteEvent(Integer eid);
+    void deleteEvent(String eid);
     void addEvent(Event event);
-    List<Event> verEventSign(Integer eid,String signPwd);
-    void updateEvent(Integer eid,Integer status,String signPwd);
+    List<Event> verEventSign(String eid,String signPwd);
+    void updateEvent(String eid,Integer status,String signPwd);
 }

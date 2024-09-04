@@ -12,11 +12,11 @@ import java.util.List;
 public interface JoinedInfoService {
 
 
-    List<UserVo> getJoinedInfoByEventId(Integer eid,Integer status);
-    List<JoinedInfo> getJoinedInfoByUserId(Integer uid);
-    List<Event> getJoinEventByUserId(Integer uid);
-    void addJoin(Integer uid,Integer event_id);
-    void cancelJoin(Integer uid,Integer event_id);
-    void signJoin(Integer uid,Integer event_id);
+    List<UserVo> getJoinedInfoByEventId(String eid,Integer status);
+    List<JoinedInfo> getJoinedInfoByUserId(String uid,String eid);
+    List<Event> getJoinEventByUserId(String uid);
+    void addJoin(String uid,String event_id,Integer status);
+    void cancelJoin(String uid,String event_id);
+    void signJoin(String uid,String event_id);
     void updateJoin(JoinedInfo joinedInfo);
 }

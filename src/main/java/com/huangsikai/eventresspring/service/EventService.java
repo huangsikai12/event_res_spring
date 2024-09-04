@@ -12,9 +12,9 @@ import java.util.List;
 public interface EventService {
 
 
-    List<Event> getEventList();
+    List<Event> getEventList(Integer status);
     void addEvent(Event event);
-    List<Event> verEventSign(Integer eid,String signPwd);
-    void deleteEvent(Integer eid);
-    void updateEvent(Integer eid,Integer status,String signPwd);
+    List<Event> verEventSign(String eid,String signPwd);
+    void deleteEvent(String eid);
+    void updateEvent(String eid,Integer status,String signPwd);
 }

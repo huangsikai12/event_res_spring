@@ -30,6 +30,22 @@ public class UserController {
         }
         return new Result(404,"登陆失败",null);
     }
+
+    @GetMapping("/get")
+    public Result<UserVo> getUserByUserId(@RequestParam String uid)
+    {
+        User u = null;
+        try {
+            u = userService.getUserById(uid);
+        } catch (Exception ignored) {
+        }
+        if (u!=null)
+        {
+            return new Result<UserVo>(200,"获取成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId()));
+
+        }
+        return new Result(404,"获取失败",null);
+    }
     @PostMapping("/add")
     public Result<String> AddUser(@RequestBody User user)
     {

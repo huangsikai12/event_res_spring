@@ -9,6 +9,11 @@
     <!-- 查询活动列表 -->
     <select id="getEventList" resultType="com.huangsikai.eventresspring.pojo.Event">
         select * from t_activity
+                    <if test="status!=null">
+                        where
+                        status = #{status}
+                    </if>
+                ;
     </select>
 
     <!-- 新增活动 -->

@@ -22,31 +22,31 @@ public class JoinedInfoServiceImpl implements JoinedInfoService {
     EventMapper eventMapper;
 
     @Override
-    public List<UserVo> getJoinedInfoByEventId(Integer eid,Integer status) {
+    public List<UserVo> getJoinedInfoByEventId(String eid,Integer status) {
         return joinedInfoMapper.getJoinedInfoByEventId(eid,status);
     }
 
     @Override
-    public List<JoinedInfo> getJoinedInfoByUserId(Integer uid) {
-        return joinedInfoMapper.getJoinedInfoByUserId(uid);
+    public List<JoinedInfo> getJoinedInfoByUserId(String uid,String eid) {
+        return joinedInfoMapper.getJoinedInfoByUserId(uid,eid);
     }
     @Override
-    public List<Event> getJoinEventByUserId(Integer uid) {
+    public List<Event> getJoinEventByUserId(String uid) {
         return joinedInfoMapper.getJoinEventByUserId(uid);
     }
 
     @Override
-    public void addJoin(Integer uid, Integer event_id) {
-        joinedInfoMapper.addJoin(uid,event_id);
+    public void addJoin(String uid, String event_id,Integer status) {
+        joinedInfoMapper.addJoin(uid,event_id,status);
     }
 
     @Override
-    public void cancelJoin(Integer uid, Integer event_id) {
+    public void cancelJoin(String uid, String event_id) {
         joinedInfoMapper.cancelJoin(uid,event_id);
     }
 
     @Override
-    public void signJoin(Integer uid, Integer event_id) {
+    public void signJoin(String uid, String event_id) {
 
     }
 

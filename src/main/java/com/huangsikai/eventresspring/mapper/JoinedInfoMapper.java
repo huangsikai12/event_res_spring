@@ -10,11 +10,11 @@ import java.util.List;
 @Mapper
 public interface JoinedInfoMapper {
 
-    List<JoinedInfo> getJoinedInfoByUserId(Integer uid);
-    List<Event> getJoinEventByUserId(Integer uid);
-    List<UserVo> getJoinedInfoByEventId(Integer eid,Integer status);
-    void addJoin(Integer uid,Integer event_id);
-    void cancelJoin(Integer uid,Integer event_id);
+    List<JoinedInfo> getJoinedInfoByUserId(String uid,String eid);
+    List<Event> getJoinEventByUserId(String uid);
+    List<UserVo> getJoinedInfoByEventId(String eid,Integer status);
+    void addJoin(String uid,String event_id,Integer status);
+    void cancelJoin(String uid,String event_id);
     void updateJoin(JoinedInfo joinedInfo);
 
 }
