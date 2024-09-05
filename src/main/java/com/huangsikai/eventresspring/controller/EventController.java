@@ -135,7 +135,7 @@ public class EventController {
                 if (!events.isEmpty() && events.get(0).getStatus() == 1)
                 {
 
-                    joinedInfoService.updateJoin(new JoinedInfo(0,userVo.getUid(),eid,status));
+                    joinedInfoService.updateJoin(new JoinedInfo(0,userVo.getUid(),eid,status,""));
                 }
             }
             return new Result<>(200, !events.isEmpty() ?"验证并签到成功":"签到码错误",null);

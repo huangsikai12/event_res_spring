@@ -41,7 +41,14 @@
     <update id="updateJoin">
         update  t_join set
             status =  ${status}
-        where event_id = ${eid} and uid = ${uid}
+        where
+            <if test="eid!=null">
+                event_id = ${eid}
+            </if>
+            <if test="uid!=null">
+              and uid = ${uid}
+            </if>
+          ;
     </update>
 
     <!-- 查询活动报名人详情 by id -->
@@ -52,6 +59,7 @@
         </if>
         ;
     </select>
+
 
 
 

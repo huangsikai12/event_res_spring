@@ -27,6 +27,11 @@ public class JoinedInfoServiceImpl implements JoinedInfoService {
     }
 
     @Override
+    public List<JoinedInfo> getJoinedInfoByStatus(Integer status) {
+        return joinedInfoMapper.getJoinedInfoByStatus(status);
+    }
+
+    @Override
     public List<JoinedInfo> getJoinedInfoByUserId(String uid,String eid) {
         return joinedInfoMapper.getJoinedInfoByUserId(uid,eid);
     }
@@ -53,7 +58,7 @@ public class JoinedInfoServiceImpl implements JoinedInfoService {
     @Override
     public void updateJoin(JoinedInfo joinedInfo) {
 
-        log.error(joinedInfo.toString());
         joinedInfoMapper.updateJoin(joinedInfo);
     }
+
 }

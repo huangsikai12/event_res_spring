@@ -9,10 +9,7 @@ import com.huangsikai.eventresspring.service.JoinedInfoService;
 import com.huangsikai.eventresspring.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -88,5 +85,30 @@ public class JoinedInfoController {
             return new Result(404,"获取失败",e.getMessage());
         }
     }
+
+    @GetMapping("/get/status")
+    public Result<List<JoinedInfo>> getJoinedInfoByStatus(@RequestParam Integer status) {
+        try
+        {
+            return new Result<List<JoinedInfo>>(200,"获取成功",joinedInfoService.getJoinedInfoByStatus(status));
+        }
+        catch (Exception e)
+        {
+            return new Result(404,"获取失败",e.getMessage());
+        }
+    }
+    @PostMapping("/set/status")
+    public Result<JoinedInfo> setJoinedInfoByStatus(@RequestBody JoinedInfo joinedInfo) {
+        try
+        {
+            joinedInfoService.updateJoin(joinedInfo);
+            return new Result<JoinedInfo>(200,"设置成功",joinedInfo);
+        }
+        catch (Exception e)
+        {
+            return new Result(404,"设置失败",e.getMessage());
+        }
+    }
+
 
 }

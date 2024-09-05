@@ -18,7 +18,7 @@
 
     <!-- 新增用户 -->
     <insert id="addUser">
-        insert into t_user(name,password,role) values(#{name},#{password},#{role})
+        insert into t_user(name,pwd,uid) values(#{name},#{pwd},#{uid})
     </insert>
 
 </mapper>

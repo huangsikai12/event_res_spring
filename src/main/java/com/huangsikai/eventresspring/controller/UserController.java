@@ -47,16 +47,21 @@ public class UserController {
         return new Result(404,"获取失败",null);
     }
     @PostMapping("/add")
-    public Result<String> AddUser(@RequestBody User user)
+    public Result<String> addUser(@RequestBody User user)
     {
         try
         {
-            userService.addUser(user);
-            return new Result<String>(200,"添加成功",user.toString());
+            User u = userService.getUserById(user.getUid());
+            if (u==null)
+            {
+                userService.addUser(user);
+                return new Result<String>(200,"注册成功",user.toString());
+            }
         }catch (Exception e)
         {
-            return new Result<String>(404,"添加失败",e.getMessage());
+            return new Result<String>(404,"注册失败，网络问题",e.getMessage());
         }
+        return new Result<String>(404,"注册失败,用户已存在","1111");
 
     }
 }

@@ -14,3 +14,11 @@ spring:
     url: jdbc:mysql://u.huangsikai.top:3306/event_res?useSSL=false&serverTimezone=UTC
     username: event_res
     password: hsk040722
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 20
+      max-wait: 5000
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true

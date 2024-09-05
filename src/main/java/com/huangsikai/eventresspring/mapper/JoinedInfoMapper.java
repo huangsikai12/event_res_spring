@@ -11,6 +11,7 @@ import java.util.List;
 public interface JoinedInfoMapper {
 
     List<JoinedInfo> getJoinedInfoByUserId(String uid,String eid);
+    List<JoinedInfo> getJoinedInfoByStatus(Integer status);
     List<Event> getJoinEventByUserId(String uid);
     List<UserVo> getJoinedInfoByEventId(String eid,Integer status);
     void addJoin(String uid,String event_id,Integer status);
