@@ -14,4 +14,5 @@ public class User {
     private Integer roleId;
     private String uid;
     private String phone;
+    private String token;
 }

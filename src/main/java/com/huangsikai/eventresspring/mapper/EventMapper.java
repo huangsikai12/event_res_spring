@@ -11,7 +11,6 @@ import java.util.List;
 public interface EventMapper {
 
     List<Event> getEventList(Integer status);
-//    User getUserByInfo(UserPo user);
     void deleteEvent(String eid);
     void addEvent(Event event);
     List<Event> verEventSign(String eid,String signPwd);

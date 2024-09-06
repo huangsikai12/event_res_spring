@@ -127,7 +127,12 @@ public class EventController {
         try
         {
             List<Event> events = eventService.verEventSign(eid, signPwd);
-            if (status!=1)
+            List<JoinedInfo> joinedInfoByUserId = joinedInfoService.getJoinedInfoByUserId(userVo.getUid(), eid);
+            if (!joinedInfoByUserId.isEmpty())
+            {
+                return new Result<>(404,"验证失败","签到过了");
+            }
+            if (status!=1 && !events.isEmpty() )
             {
                 joinedInfoService.addJoin(userVo.getUid(),eid,status);
             }else
