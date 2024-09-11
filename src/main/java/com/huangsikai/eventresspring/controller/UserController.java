@@ -28,15 +28,21 @@ public class UserController {
     @PostMapping("/login")
     public Result<UserVo> Login(@RequestBody UserPo user)
     {
-        User u = userService.getUserByInfo(user);
-        if (u!=null)
-        {
-            String token = jwtConfig.createToken(gson.toJson(new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),"")));
-            u.setToken(token);
-            return new Result<UserVo>(200,"登陆成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getToken()));
+        try {
+            User u = userService.getUserByInfo(user);
+            if (u!=null)
+            {
+                String token = jwtConfig.createToken(gson.toJson(new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),"")));
+                u.setToken(token);
+                return new Result<UserVo>(200,"登陆成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getToken()));
 
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
         }
-        return new Result(404,"登陆失败",null);
+
+        return new Result<>(404,"登陆失败",null);
     }
 
     @GetMapping("/get")

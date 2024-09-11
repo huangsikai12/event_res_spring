@@ -10,6 +10,6 @@ public interface UserService {
 
 
     User getUserById(String id);
-    User getUserByInfo(UserPo user);
-    void addUser(User user);
+    User getUserByInfo(UserPo user) throws Exception;
+    void addUser(User user) throws Exception;
 }
