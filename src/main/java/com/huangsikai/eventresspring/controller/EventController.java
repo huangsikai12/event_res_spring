@@ -128,7 +128,7 @@ public class EventController {
         {
             List<Event> events = eventService.verEventSign(eid, signPwd);
             List<JoinedInfo> joinedInfoByUserId = joinedInfoService.getJoinedInfoByUserId(userVo.getUid(), eid);
-            if (!joinedInfoByUserId.isEmpty())
+            if (!joinedInfoByUserId.isEmpty() && joinedInfoByUserId.get(0).getStatus() ==1)
             {
                 return new Result<>(404,"验证失败","签到过了");
             }
