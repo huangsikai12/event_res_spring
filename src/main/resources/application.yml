@@ -23,8 +23,23 @@ spring:
       testOnBorrow: false
       testOnReturn: false
       testWhileIdle: true
+  data:
+    redis:
+      host: u.huangsikai.top
+      password: hsk040722
+      port: 6379
+      connect-timeout: 30000ms
+      lettuce:
+        pool:
+          max-active: 10
+          max-wait: 60000ms
+          max-idle: 8
+          min-idle: 0
 config:
   jwt:
     secret: hsk_code
     expire: 1800
     header: token
+
+
+

@@ -19,6 +19,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/user/get")
                 .excludePathPatterns("/join/get/user")
                 .excludePathPatterns("/event/verSignPwd/**")
+                .excludePathPatterns("/test/**")
+                .excludePathPatterns("/home/**")
                 .excludePathPatterns("/event/all");
     }
 }

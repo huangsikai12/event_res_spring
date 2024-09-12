@@ -4,6 +4,7 @@ package com.huangsikai.eventresspring.service;
 import com.huangsikai.eventresspring.mapper.UserMapper;
 import com.huangsikai.eventresspring.po.UserPo;
 import com.huangsikai.eventresspring.pojo.User;
+import com.huangsikai.eventresspring.utils.PasswordEncryptor;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserByInfo(UserPo user) {
+    public User getUserByInfo(UserPo user) throws Exception {
+        user.setPwd(PasswordEncryptor.encrypt(user.getPwd()));
         return userMapper.getUserByInfo(user);
     }
 
     @Override
-    public void addUser(User user) {
+    public void addUser(User user) throws Exception {
+        user.setPwd(PasswordEncryptor.encrypt(user.getPwd()));
         userMapper.addUser(user);
     }
 }

@@ -1,0 +1,13 @@
+<!-- UserMapper.xml -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huangsikai.eventresspring.mapper.HomeGridMapper">
+
+    <select id="getHomeGridList" resultType="com.huangsikai.eventresspring.pojo.HomeGrid">
+        select * from t_home_grid;
+    </select>
+
+</mapper>
