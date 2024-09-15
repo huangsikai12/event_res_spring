@@ -11,6 +11,10 @@
         SELECT  * FROM t_user WHERE uid = #{uid}
     </select>
 
+    <select id="getUserByPhone" resultType="com.huangsikai.eventresspring.pojo.User">
+        SELECT  * FROM t_user WHERE phone = #{phone}
+    </select>
+
     <!-- 查询用户 by name -->
     <select id="getUserByInfo" resultType="com.huangsikai.eventresspring.pojo.User">
         SELECT * FROM t_user WHERE uid = #{uid} and pwd =#{pwd}
@@ -18,7 +22,7 @@
 
     <!-- 新增用户 -->
     <insert id="addUser">
-        insert into t_user(name,pwd,uid) values(#{name},#{pwd},#{uid})
+        insert into t_user(name,pwd,uid,phone) values(#{name},#{pwd},#{uid},#{phone})
     </insert>
 
 </mapper>

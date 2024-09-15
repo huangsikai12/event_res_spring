@@ -1,0 +1,15 @@
+<!-- UserMapper.xml -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huangsikai.eventresspring.mapper.EmailMessageMapper">
+
+
+    <!-- 新增用户 -->
+    <insert id="addMessage">
+        insert into t_emailMessage(uid,message,email,send_time,ver_time,ip) values(#{uid},#{message},#{email},#{send_time},#{ver_time},#{ip})
+    </insert>
+
+</mapper>

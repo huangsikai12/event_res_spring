@@ -1,6 +1,7 @@
 package com.huangsikai.eventresspring;
 
 import com.huangsikai.eventresspring.config.JwtConfig;
+import com.huangsikai.eventresspring.service.EmailService;
 import com.huangsikai.eventresspring.utils.PasswordEncryptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ class EventResSpringApplicationTests {
 ////        System.out.println(jwtConfig.getSubject(token));
 //        System.out.println(jedis.ping());
 //    }
+    @Autowired
+    EmailService emailService;
 
     @Test
     void contextLoads() throws Exception {
@@ -31,6 +34,14 @@ class EventResSpringApplicationTests {
 //        System.out.println(PasswordEncryptor.decrypt("8uJPbUmtiFZzqHs8sHmjlA=="));
         FileInputStream fis = new FileInputStream("/Users/baixing/Documents/GitLab/event-res-spring/src/test/java/com/huangsikai/eventresspring/test.webp");
         System.out.println(Arrays.toString(fis.readAllBytes()));
+    }
+
+    @Test
+    void contextLoads1() throws Exception {
+        // 发送邮件
+        String subject = "注册验证码";
+        String content = "尊敬的用户，您的验证码为：" + 123456;
+        emailService.sendMail("huangsikai6666@gmail.com", subject, content);
     }
 
 }

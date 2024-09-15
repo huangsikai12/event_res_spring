@@ -10,4 +10,5 @@ public interface UserMapper {
     User getUserById(String uid);
     User getUserByInfo(UserPo user);
     void addUser(User user);
+    User getUserByPhone(String phone);
 }

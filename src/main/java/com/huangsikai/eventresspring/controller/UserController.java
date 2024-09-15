@@ -66,6 +66,7 @@ public class UserController {
         try
         {
             User u = userService.getUserById(user.getUid());
+            u = u==null?userService.getUserByPhone(user.getPhone()):u;
             if (u==null)
             {
                 userService.addUser(user);
@@ -75,7 +76,7 @@ public class UserController {
         {
             return new Result<String>(404,"注册失败，网络问题",e.getMessage());
         }
-        return new Result<String>(404,"注册失败,用户已存在","1111");
+        return new Result<String>(404,"注册失败,该学号或邮箱已被注册！","1111");
 
     }
 }

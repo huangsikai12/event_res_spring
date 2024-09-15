@@ -13,6 +13,7 @@ public interface RedisService {
      * 存储数据
      */
     void set(String key, String value);
+    void set(String key, String value,long time);
 
     /**
      * 获取数据

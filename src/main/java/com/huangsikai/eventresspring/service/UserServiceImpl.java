@@ -20,6 +20,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User getUserByPhone(String phone) {
+        return userMapper.getUserByPhone(phone);
+    }
+
+    @Override
     public User getUserByInfo(UserPo user) throws Exception {
         user.setPwd(PasswordEncryptor.encrypt(user.getPwd()));
         return userMapper.getUserByInfo(user);

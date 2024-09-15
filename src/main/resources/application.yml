@@ -4,6 +4,19 @@ mybatis:
   mapper-locations: classpath:mappers/*xml
 
 spring:
+  mail:
+    host: smtp.email.cn
+    port: 465
+    username: iotclub@email.cn
+    password: XsRSp8xSd36RNqpd
+    protocol: smtps
+    default-encoding: UTF-8 #默认编码格式
+    properties:
+      mail:
+        debug: true #启动debug调试
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory #SSL连接配置
   rabbitmq:
     host: u.huangsikai.top
     port: 15672

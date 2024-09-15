@@ -10,6 +10,7 @@ public interface UserService {
 
 
     User getUserById(String id);
+    User getUserByPhone(String phone);
     User getUserByInfo(UserPo user) throws Exception;
     void addUser(User user) throws Exception;
 }
