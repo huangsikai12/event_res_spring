@@ -53,11 +53,11 @@ public class EmailController {
     {
 
         emailBody.setIp(IPUtil.getIpAddress(httpRequest));
-//        if (sendLimit(emailBody,4,180000L)) {
-//            return new Result<>(404,"发送过于频繁！","");
-//        }
+        if (sendLimit(emailBody,4,180000L)) {
+            return new Result<>(404,"发送过于频繁！","");
+        }
         if (sendLimit(emailBody,10,86400000L)) {
-            return new Result<>(404,"一天只能发送10条验证码！","");
+            return new Result<>(404,"同一IP一天只能发送10条验证码！","");
         }
         try
         {
