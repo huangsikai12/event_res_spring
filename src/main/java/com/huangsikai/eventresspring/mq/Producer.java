@@ -30,6 +30,7 @@ public class Producer {
      * @param msg
      */
     public void send (String routingKey,String msg){
+        log.error("收到消息"+msg);
         rabbitTemplate.convertAndSend(DIRECT_EXCHANGE,routingKey,msg);
     }
 }

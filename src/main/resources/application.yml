@@ -3,14 +3,63 @@ server:
 mybatis:
   mapper-locations: classpath:mappers/*xml
 
+
+mail:
+  configs:
+    # 账号
+    - username: iotclub2@email.cn
+      password: YTrkHRbytKJ8VNs2
+      host: smtp.email.cn
+      port: 465
+      protocol: smtps
+      default-encoding: UTF-8
+    # 账号A
+    - username: iotclub3@email.cn
+      password: TMW8QBBAU9EPicnT
+      host: smtp.email.cn
+      port: 465
+      protocol: smtps
+      default-encoding: UTF-8
+
+    # 账号A
+    - username: iotclub6@email.cn
+      password: yaANiKVX3EPH8cQh
+      host: smtp.email.cn
+      port: 465
+      protocol: smtps
+      default-encoding: UTF-8
+    # 账号A
+    - username: iotclub7@email.cn
+      password: Ry7iVg4JRYzxT2SR
+      host: smtp.email.cn
+      port: 465
+      protocol: smtps
+      default-encoding: UTF-8
+
+    - username: iotclub4@163.com
+      password: TALSEEOOCGUYYCDX
+      host: smtp.163.com
+      port: 465
+      protocol: smtps
+      default-encoding: UTF-8
+
+    - username: iotclub5@163.com
+      password: WGJSEKIJRPCOKPWN
+      host: smtp.163.com
+      port: 465
+      protocol: smtps
+      default-encoding: UTF-8
+
+    - username: iotclub@email.cn
+      password: XsRSp8xSd36RNqpd
+      host: smtp.email.cn
+      port: 465
+      protocol: smtps
+      default-encoding: UTF-8
+
+
 spring:
   mail:
-    host: smtp.email.cn
-    port: 465
-    username: iotclub@email.cn
-    password: XsRSp8xSd36RNqpd
-    protocol: smtps
-    default-encoding: UTF-8 #默认编码格式
     properties:
       mail:
         debug: true #启动debug调试

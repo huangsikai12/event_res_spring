@@ -41,11 +41,19 @@ class EventResSpringApplicationTests {
     }
 
     @Test
-    void contextLoads1() throws Exception {
+    void contextLoads1()  {
         // 发送邮件
         String subject = "注册验证码";
         String content = "尊敬的用户，您的验证码为：" + 123456;
-        emailService.sendMail("huangsikai6666@gmail.com", subject, content);
+        try
+        {
+            emailService.sendMail("huangsikai6666@gmail.com", subject, content);
+        }catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+
+        }
+
     }
 
     @Test

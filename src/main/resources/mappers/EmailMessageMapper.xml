@@ -9,7 +9,7 @@
 
     <!-- 新增消息 -->
     <insert id="addMessage">
-        insert into t_emailMessage(uid,message,email,send_time,ver_time,ip) values(#{uid},#{message},#{email},#{send_time},#{ver_time},#{ip})
+        insert into t_emailMessage(uid,message,email,send_time,ver_time,ip,sender) values(#{uid},#{message},#{email},#{send_time},#{ver_time},#{ip},#{sender})
     </insert>
 
     <!-- 查询消息ByIp -->

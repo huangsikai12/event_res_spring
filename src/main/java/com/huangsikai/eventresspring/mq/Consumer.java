@@ -34,7 +34,7 @@ public class Consumer {
     @RabbitHandler
     @RabbitListener(queues = Config.SEND_EMAIL)
     public void process(String testMessage) throws MessagingException {
-        log.error(testMessage);
+        log.error("消费消息"+testMessage);
         SendEmailPo emailBody =gson.fromJson(testMessage,SendEmailPo.class);
         String code = VerificationCodeUtils.generateCode(6);
         String subject = switch (emailBody.getAction()) {
@@ -45,8 +45,30 @@ public class Consumer {
         };
         String content = "您的验证码是："+code+"\n验证码5分钟内有效，请及时注册!";
         redisService.set(emailBody.getAction()+emailBody.getUid()+","+emailBody.getEmail(),code,300);
-        emailService.sendMail(emailBody.getEmail(),subject,content);
-        messageService.addMessage(new EmailMessage(null,emailBody.getUid(),emailBody.getEmail(),subject+content,new Date().getTime(),"0",emailBody.getIp()));
+        try
+        {
+            String sender = emailService.sendMail(emailBody.getEmail(), subject, content);
+            messageService.addMessage(new EmailMessage(null,emailBody.getUid(),emailBody.getEmail(),subject+content,new Date().getTime(),"0",emailBody.getIp(),sender));
+
+        }catch (Exception e)
+        {
+            log.error(e.getMessage()+"第一次选择失败，进行第二次选择");
+            try
+            {
+                String sender = emailService.sendMail(emailBody.getEmail(), subject, content);
+                messageService.addMessage(new EmailMessage(null,emailBody.getUid(),emailBody.getEmail(),subject+content,new Date().getTime(),"0",emailBody.getIp(),sender));
+            }
+            catch (Exception e1)
+            {
+                log.error(e1.getMessage()+"第二次选择失败，进行第三次选择");
+                String sender = emailService.sendMail(emailBody.getEmail(), subject, content);
+                messageService.addMessage(new EmailMessage(null,emailBody.getUid(),emailBody.getEmail(),subject+content,new Date().getTime(),"0",emailBody.getIp(),sender));
+
+            }
+
+        }
+
+
     }
 
 }

@@ -14,5 +14,6 @@ public class EmailMessage {
     private Long send_time;
     private String ver_time;
     private String ip;
+    private String sender;
 
 }

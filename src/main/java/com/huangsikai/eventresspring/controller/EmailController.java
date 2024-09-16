@@ -53,8 +53,11 @@ public class EmailController {
     {
 
         emailBody.setIp(IPUtil.getIpAddress(httpRequest));
-        if (sendLimit(emailBody)) {
-            return new Result<>(404,"发送过于频繁！","");
+//        if (sendLimit(emailBody,4,180000L)) {
+//            return new Result<>(404,"发送过于频繁！","");
+//        }
+        if (sendLimit(emailBody,10,86400000L)) {
+            return new Result<>(404,"一天只能发送10条验证码！","");
         }
         try
         {
@@ -75,9 +78,9 @@ public class EmailController {
         }
     }
 
-    public boolean sendLimit(SendEmailPo emailBody)
+    public boolean sendLimit(SendEmailPo emailBody,Integer limit,Long time)
     {
-        return  messageService.findMessageByIp(emailBody.getIp(),new Date().getTime()-180000).size() >= 4;
+        return  messageService.findMessageByIp(emailBody.getIp(),new Date().getTime()-time).size() >= limit;
     }
 
     @PostMapping("/verCode/{code}")
