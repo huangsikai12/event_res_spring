@@ -10,4 +10,5 @@ import java.util.List;
 public interface EmailMessageMapper {
 
     void addMessage(EmailMessage emailMessage);
+    List<EmailMessage> findMessageByIp(String ip,Long send_time);
 }

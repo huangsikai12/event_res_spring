@@ -38,6 +38,8 @@ public class Config {
      */
     public static final String CONFIRM_ORDER = "confirm-order";
 
+    public static final String SEND_EMAIL = "send-email";
+
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
@@ -100,6 +102,15 @@ public class Config {
     }
 
     /**
+     * 发邮件 消息队列
+     * @return
+     */
+    @Bean(SEND_EMAIL)
+    public Queue sendEmailQueue(){
+        return new Queue(SEND_EMAIL,true,false,true);
+    }
+
+    /**
      * 把取消订单消息队列绑定到交换机上
      * @param queue
      * @param directExchange
@@ -110,6 +121,19 @@ public class Config {
                                       @Qualifier(DIRECT_EXCHANGE) Exchange directExchange){
         //RoutingKey :CANCEL_ORDER,这里设置与消息队列 同名
         return BindingBuilder.bind(queue).to(directExchange).with(CANCEL_ORDER).noargs();
+    }
+
+    /**
+     * 把发邮件消息队列绑定到交换机上
+     * @param queue
+     * @param directExchange
+     * @return
+     */
+    @Bean
+    public Binding sendEmailBinding(@Qualifier(SEND_EMAIL) Queue queue,
+                                      @Qualifier(DIRECT_EXCHANGE) Exchange directExchange){
+        //RoutingKey :CANCEL_ORDER,这里设置与消息队列 同名
+        return BindingBuilder.bind(queue).to(directExchange).with(SEND_EMAIL).noargs();
     }
 
     /**

@@ -19,7 +19,7 @@ spring:
             class: javax.net.ssl.SSLSocketFactory #SSL连接配置
   rabbitmq:
     host: u.huangsikai.top
-    port: 15672
+    port: 5672
     username: admin
     password: 31eea5e3
   datasource:

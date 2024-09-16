@@ -1,6 +1,8 @@
 package com.huangsikai.eventresspring;
 
 import com.huangsikai.eventresspring.config.JwtConfig;
+import com.huangsikai.eventresspring.mq.Config;
+import com.huangsikai.eventresspring.mq.Producer;
 import com.huangsikai.eventresspring.service.EmailService;
 import com.huangsikai.eventresspring.utils.PasswordEncryptor;
 import org.junit.jupiter.api.Test;
@@ -27,6 +29,8 @@ class EventResSpringApplicationTests {
 //    }
     @Autowired
     EmailService emailService;
+    @Autowired
+    Producer producer;
 
     @Test
     void contextLoads() throws Exception {
@@ -42,6 +46,11 @@ class EventResSpringApplicationTests {
         String subject = "注册验证码";
         String content = "尊敬的用户，您的验证码为：" + 123456;
         emailService.sendMail("huangsikai6666@gmail.com", subject, content);
+    }
+
+    @Test
+    void contextLoads2() throws Exception {
+       producer.send(Config.SEND_EMAIL,"1111");
     }
 
 }

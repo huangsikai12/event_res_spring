@@ -7,9 +7,19 @@
 <mapper namespace="com.huangsikai.eventresspring.mapper.EmailMessageMapper">
 
 
-    <!-- 新增用户 -->
+    <!-- 新增消息 -->
     <insert id="addMessage">
         insert into t_emailMessage(uid,message,email,send_time,ver_time,ip) values(#{uid},#{message},#{email},#{send_time},#{ver_time},#{ip})
     </insert>
+
+    <!-- 查询消息ByIp -->
+    <select id="findMessageByIp" resultType="com.huangsikai.eventresspring.pojo.EmailMessage">
+        select * from  t_emailMessage where ip = #{ip} and send_time > #{send_time}
+    </select>
+
+    <!-- 查询消息Byemail -->
+    <select id="findMessageByEmail" resultType="com.huangsikai.eventresspring.pojo.EmailMessage">
+        select * from  t_emailMessage where email = #{email}
+    </select>
 
 </mapper>

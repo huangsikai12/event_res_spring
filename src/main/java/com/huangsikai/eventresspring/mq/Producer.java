@@ -17,9 +17,9 @@ import static com.huangsikai.eventresspring.mq.Config.DIRECT_EXCHANGE;
  * @author qzz
  */
 @Component
-public class DirectSender {
+public class Producer {
 
-    private static final Logger log = LoggerFactory.getLogger(DirectSender.class);
+    private static final Logger log = LoggerFactory.getLogger(Producer.class);
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -30,13 +30,6 @@ public class DirectSender {
      * @param msg
      */
     public void send (String routingKey,String msg){
-        Message message = MessageBuilder.withBody(msg.getBytes())
-                .setContentType(MessageProperties.CONTENT_TYPE_JSON)
-                .setContentEncoding("utf-8")
-                .setMessageId(UUID.randomUUID()+"").build();
-
-        log.info("【发送者】消息内容【{}】 交换机【{}】 路由【{}】 消息ID【{}】",msg,DIRECT_EXCHANGE
-                ,routingKey,message.getMessageProperties().getMessageId());
-        rabbitTemplate.convertAndSend(DIRECT_EXCHANGE,routingKey,message);
+        rabbitTemplate.convertAndSend(DIRECT_EXCHANGE,routingKey,msg);
     }
 }

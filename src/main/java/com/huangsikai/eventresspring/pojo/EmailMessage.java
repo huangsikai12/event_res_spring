@@ -11,7 +11,7 @@ public class EmailMessage {
     private String uid;
     private String email;
     private String message;
-    private String send_time;
+    private Long send_time;
     private String ver_time;
     private String ip;
 
