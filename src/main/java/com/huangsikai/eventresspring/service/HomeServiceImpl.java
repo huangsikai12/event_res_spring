@@ -9,12 +9,24 @@ import java.util.List;
 
 
 @Service
-public class HomeGridServiceImpl implements HomeGridService {
+public class HomeServiceImpl implements HomeService {
 
     @Autowired
     HomeGridMapper homeGridMapper;
+    @Autowired
+    RedisService redisService;
     @Override
     public List<HomeGrid> getHomeGridList() {
         return homeGridMapper.getHomeGridList();
+    }
+
+    @Override
+    public String getTopInformation() {
+        return redisService.get("top_information");
+    }
+
+    @Override
+    public void setTopInformation(String value) {
+         redisService.set("top_information",value);
     }
 }

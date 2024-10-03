@@ -10,6 +10,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private  TokenInterceptor tokenInterceptor;
+    @Autowired
+    private  AdminOperateInterceptor adminOperateInterceptor ;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
@@ -22,6 +24,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/test/**")
                 .excludePathPatterns("/home/**")
                 .excludePathPatterns("/email/**")
-                .excludePathPatterns("/event/all");
+                .excludePathPatterns("/event/all")
+                ;
+
+        registry.addInterceptor(adminOperateInterceptor)
+                .addPathPatterns("/home/setTopInfo")
+                .addPathPatterns("/event/delete/**")
+                .addPathPatterns("/event/update/**")
+                .addPathPatterns("/event/setSignPwd/**")
+                .addPathPatterns("/add")
+
+        ;
     }
 }

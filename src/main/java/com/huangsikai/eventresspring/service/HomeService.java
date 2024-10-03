@@ -4,8 +4,12 @@ import com.huangsikai.eventresspring.pojo.HomeGrid;
 
 import java.util.List;
 
-public interface HomeGridService {
+public interface HomeService {
 
 
     List<HomeGrid> getHomeGridList();
+
+    String getTopInformation();
+
+    void setTopInformation(String value);
 }

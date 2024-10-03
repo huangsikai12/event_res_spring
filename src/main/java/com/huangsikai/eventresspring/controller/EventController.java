@@ -34,7 +34,7 @@ public class EventController {
     {
         try
         {
-            return new Result<List<Event>>(200,"获取成功",eventService.getEventList(status));
+            return new Result<>(200,"获取成功",eventService.getEventList(status));
         }
         catch (Exception e)
         {
@@ -44,12 +44,8 @@ public class EventController {
     }
 
     @PostMapping("/delete/{eid}")
-    public Result<String> deleteEvent(@RequestBody UserVo userVo, @PathVariable String eid)
+    public Result<String> deleteEvent(@PathVariable String eid)
     {
-        if (userVo.getRoleId() !=1)
-        {
-            return new Result<>(404,"权限校验失败",null);
-        }
         try
         {
             eventService.deleteEvent(eid);
@@ -65,7 +61,6 @@ public class EventController {
     @PostMapping("/add")
     public Result<String> addEvent(@RequestBody Event event)
     {
-
         try
         {
             eventService.addEvent(event);
@@ -81,10 +76,6 @@ public class EventController {
     @PostMapping("/update/{eid}/{status}")
     public Result<String> updateStatus(@RequestBody UserVo userVo, @PathVariable String eid, @PathVariable Integer status)
     {
-        if (userVo.getRoleId() !=1)
-        {
-            return new Result<>(404,"权限校验失败",null);
-        }
         try
         {
             eventService.updateEvent(eid,status,null);
@@ -98,12 +89,8 @@ public class EventController {
     }
 
     @PostMapping("/setSignPwd/{eid}")
-    public Result<String> updateSignPwd(@RequestBody UserVo userVo, @PathVariable String eid, @RequestParam String signPwd)
+    public Result<String> updateSignPwd(@PathVariable String eid, @RequestParam String signPwd)
     {
-        if (userVo.getRoleId() !=1)
-        {
-            return new Result<>(404,"权限校验失败",null);
-        }
         try
         {
             eventService.updateEvent(eid,null,signPwd);

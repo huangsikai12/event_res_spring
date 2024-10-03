@@ -15,9 +15,6 @@ public class PasswordEncryptor {
     // 加密/解密算法/工作模式/填充方式
     private static final String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
 
-
-
-
     // 生成密钥
     public static String generateKey() throws Exception {
         KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);
