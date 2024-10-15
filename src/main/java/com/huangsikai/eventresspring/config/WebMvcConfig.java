@@ -29,6 +29,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(adminOperateInterceptor)
                 .addPathPatterns("/home/setTopInfo")
+                .addPathPatterns("/home/setHomeGrid")
+                .addPathPatterns("/home/delHomeGrid")
+                .addPathPatterns("/home/updateHomeGrid")
                 .addPathPatterns("/event/delete/**")
                 .addPathPatterns("/event/update/**")
                 .addPathPatterns("/event/setSignPwd/**")

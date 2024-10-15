@@ -12,4 +12,8 @@ public interface HomeService {
     String getTopInformation();
 
     void setTopInformation(String value);
+
+    void addHomeGrid(HomeGrid homeGrid);
+    void updateHomeGrid(HomeGrid homeGrid);
+    void delHomeGrid(Integer id);
 }

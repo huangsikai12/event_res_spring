@@ -10,4 +10,7 @@ import java.util.List;
 public interface HomeGridMapper {
 
     List<HomeGrid> getHomeGridList();
+    void addHomeGrid(HomeGrid homeGrid);
+    void updateHomeGrid(HomeGrid homeGrid);
+    void delHomeGrid(Integer id);
 }

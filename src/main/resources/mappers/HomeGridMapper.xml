@@ -10,4 +10,19 @@
         select * from t_home_grid;
     </select>
 
+    <select id="addHomeGrid" >
+        insert into t_home_grid(title,image,action) values(#{title},#{image},#{action});
+    </select>
+
+    <delete id="delHomeGrid" >
+        delete from t_home_grid where id = ${id};
+    </delete>
+
+    <update id="updateHomeGrid" >
+        update  t_home_grid set
+         title = #{title},image = #{image},action = #{action}
+         where id = ${id}
+    </update>
+
+
 </mapper>

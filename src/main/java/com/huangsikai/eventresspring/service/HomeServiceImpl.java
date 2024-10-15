@@ -29,4 +29,19 @@ public class HomeServiceImpl implements HomeService {
     public void setTopInformation(String value) {
          redisService.set("top_information",value);
     }
+
+    @Override
+    public void addHomeGrid(HomeGrid homeGrid) {
+        homeGridMapper.addHomeGrid(homeGrid);
+    }
+
+    @Override
+    public void updateHomeGrid(HomeGrid homeGrid) {
+        homeGridMapper.updateHomeGrid(homeGrid);
+    }
+
+    @Override
+    public void delHomeGrid(Integer id) {
+        homeGridMapper.delHomeGrid(id);
+    }
 }
