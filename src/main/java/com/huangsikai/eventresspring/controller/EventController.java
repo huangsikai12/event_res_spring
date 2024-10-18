@@ -9,6 +9,7 @@ import com.huangsikai.eventresspring.pojo.User;
 import com.huangsikai.eventresspring.service.EventService;
 import com.huangsikai.eventresspring.service.JoinedInfoService;
 import com.huangsikai.eventresspring.service.UserService;
+import com.huangsikai.eventresspring.vo.EventVo;
 import com.huangsikai.eventresspring.vo.UserVo;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,17 +32,28 @@ public class EventController {
 
 
     @GetMapping("/all")
-    public Result<List<Event>> getEventList(@RequestParam @Nullable Integer status)
+    public Result<List<EventVo>> getEventList(@RequestParam @Nullable Integer status)
     {
         try
         {
-            return new Result<>(200,"获取成功",eventService.getEventList(status));
+            List<Event> eventList = eventService.getEventList(status);
+            List<EventVo> eventVoList = new ArrayList<>();
+            for (Event event : eventList) {
+                EventVo eventVo = new EventVo();
+                eventVo.setId(event.getId());
+                eventVo.setTime(event.getTime());
+                eventVo.setDescription(event.getDescription());
+                eventVo.setPlace(event.getPlace());
+                eventVo.setTitle(event.getTitle());
+                eventVo.setStatus(event.getStatus());
+                eventVoList.add(eventVo);
+            }
+            return new Result<>(200,"获取成功",eventVoList);
         }
         catch (Exception e)
         {
             return new Result(404,"获取失败",e.getMessage());
         }
-
     }
 
     @PostMapping("/delete/{eid}")
