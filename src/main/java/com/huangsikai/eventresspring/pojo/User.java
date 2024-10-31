@@ -12,6 +12,7 @@ public class User {
     private String name;
     private String pwd;
     private Integer roleId;
+    private Integer departId;
     private String uid;
     private String phone;
     private String token;

@@ -13,6 +13,7 @@ public class UserVo {
     private String name;
     private String uid;
     private Integer roleId;
+    private Integer departId;
     private String token;
 
 

@@ -1,0 +1,24 @@
+<!-- UserMapper.xml -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huangsikai.eventresspring.mapper.DepartmentMapper">
+
+    <!-- 获取所有部门  -->
+    <select id="getDepartmentList" resultType="com.huangsikai.eventresspring.pojo.Department">
+        SELECT  * FROM t_depart
+    </select>
+
+    <!-- 获取部门 by id  -->
+    <select id="getDepartmentById" resultType="com.huangsikai.eventresspring.pojo.Department">
+        SELECT  * FROM t_depart WHERE id = #{id}
+    </select>
+
+    <!-- 新增部门 -->
+    <insert id="addDepartment">
+        insert into t_depart(depart_name) values(#{name})
+    </insert>
+
+</mapper>

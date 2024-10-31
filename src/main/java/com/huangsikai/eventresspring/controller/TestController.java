@@ -20,20 +20,7 @@ public class TestController {
     RedisService redisService;
 
 
-    @GetMapping("/set")
-    public String set()
-    {
-        List<User> users  = new ArrayList<>();
-        users.add(new User(1,"t1","t2",2,"t3","t4","qqq"));
-        users.add(new User(1,"t1","t2",2,"t3","t4","qqq"));
-        users.add(new User(1,"t1","t2",2,"t3","t4","qqq"));
-        users.add(new User(1,"t1","t2",2,"t3","t4","qqq"));
-        users.add(new User(1,"t1","t2",2,"t3","t4","qqq"));
-        Gson gson = new Gson();
-        String json = gson.toJson(users);
-        redisService.set("test",json);
-        return "success";
-    }
+
 
     @GetMapping("/get")
     public String get()

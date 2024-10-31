@@ -93,9 +93,9 @@ public class EmailController {
             if (emailBody.getAction().equals("1"))
             {
                 User u = userService.getUserByPhone(emailBody.getEmail());
-                token = jwtConfig.createToken(gson.toJson(new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),"")));
+                token = jwtConfig.createToken(gson.toJson(new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getDepartId(),"")));
                 u.setToken(token);
-                return new Result<>(200,"登陆成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getToken()));
+                return new Result<>(200,"登陆成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getDepartId(),u.getToken()));
             }
             redisService.remove(emailBody.getAction()+emailBody.getUid() + "," + emailBody.getEmail());
             return new Result<>(200,"验证成功",token);

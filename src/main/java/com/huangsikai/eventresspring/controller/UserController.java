@@ -32,9 +32,9 @@ public class UserController {
             User u = userService.getUserByInfo(user);
             if (u!=null)
             {
-                String token = jwtConfig.createToken(gson.toJson(new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),"")));
+                String token = jwtConfig.createToken(gson.toJson(new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getDepartId(),"")));
                 u.setToken(token);
-                return new Result<UserVo>(200,"登陆成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getToken()));
+                return new Result<UserVo>(200,"登陆成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getDepartId(),u.getToken()));
 
             }
         }catch (Exception e)
@@ -55,7 +55,7 @@ public class UserController {
         }
         if (u!=null)
         {
-            return new Result<UserVo>(200,"获取成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),""));
+            return new Result<UserVo>(200,"获取成功",new UserVo(u.getId(),u.getName(),u.getUid(),u.getRoleId(),u.getDepartId(),""));
 
         }
         return new Result(404,"获取失败",null);
